@@ -1,0 +1,91 @@
+{
+  "unity_hwnd": 67032,
+  "unity_rect": [
+    -8,
+    25,
+    1928,
+    1088
+  ],
+  "scenarios": [
+    {
+      "cenario": "1_menu_popup_help",
+      "descricao": "Abertura de menu popup isolado",
+      "pipeline_mode": "fallback_full_ocr",
+      "pipeline_reason": "structural_guard_edge_touching_text_detected",
+      "is_fallback": true,
+      "area_pct": 4.6,
+      "pipeline_latency_ms": 230.5,
+      "full_ocr_latency_ms": 234.5,
+      "speedup": 1.02,
+      "equivalencia_pct": 100.0,
+      "elementos_perdidos": 0,
+      "marcas_obsoletas_falsas": 0,
+      "zero_obsoletas_ok": true,
+      "zero_perdidos_ok": true
+    },
+    {
+      "cenario": "2_foldout_inspector",
+      "descricao": "Foldout no Inspector com reflow de componentes inferiores",
+      "pipeline_mode": "fallback_full_ocr",
+      "pipeline_reason": "area_threshold_exceeded_29.8%",
+      "is_fallback": true,
+      "area_pct": 29.8,
+      "pipeline_latency_ms": 458.3,
+      "full_ocr_latency_ms": 373.5,
+      "speedup": 0.81,
+      "equivalencia_pct": 100.0,
+      "elementos_perdidos": 0,
+      "marcas_obsoletas_falsas": 0,
+      "zero_obsoletas_ok": true,
+      "zero_perdidos_ok": true
+    },
+    {
+      "cenario": "3_scroll_console",
+      "descricao": "Scroll de linhas de texto no Console",
+      "pipeline_mode": "fallback_full_ocr",
+      "pipeline_reason": "area_threshold_exceeded_20.9%",
+      "is_fallback": true,
+      "area_pct": 20.9,
+      "pipeline_latency_ms": 306.2,
+      "full_ocr_latency_ms": 354.8,
+      "speedup": 1.16,
+      "equivalencia_pct": 100.0,
+      "elementos_perdidos": 0,
+      "marcas_obsoletas_falsas": 0,
+      "zero_obsoletas_ok": true,
+      "zero_perdidos_ok": true
+    },
+    {
+      "cenario": "4_arvore_hierarchy",
+      "descricao": "Seleção de nó na árvore de Hierarchy",
+      "pipeline_mode": "fallback_full_ocr",
+      "pipeline_reason": "area_threshold_exceeded_22.0%",
+      "is_fallback": true,
+      "area_pct": 22.0,
+      "pipeline_latency_ms": 269.9,
+      "full_ocr_latency_ms": 311.7,
+      "speedup": 1.16,
+      "equivalencia_pct": 100.0,
+      "elementos_perdidos": 0,
+      "marcas_obsoletas_falsas": 0,
+      "zero_obsoletas_ok": true,
+      "zero_perdidos_ok": true
+    },
+    {
+      "cenario": "5_dois_paineis_simultaneos",
+      "descricao": "Hierarchy selecionando nó com update completo no Inspector",
+      "pipeline_mode": "fallback_full_ocr",
+      "pipeline_reason": "area_threshold_exceeded_50.4%",
+      "is_fallback": true,
+      "area_pct": 50.4,
+      "pipeline_latency_ms": 365.9,
+      "full_ocr_latency_ms": 366.3,
+      "speedup": 1.0,
+      "equivalencia_pct": 100.0,
+      "elementos_perdidos": 0,
+      "marcas_obsoletas_falsas": 0,
+      "zero_obsoletas_ok": true,
+      "zero_perdidos_ok": true
+    }
+  ]
+}

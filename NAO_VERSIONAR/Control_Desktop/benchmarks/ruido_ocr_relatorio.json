@@ -1,0 +1,13 @@
+{
+  "total_pares": 385,
+  "zero_jitter_pct": 99.48,
+  "ate_1px_pct": 100.0,
+  "ate_2px_pct": 100.0,
+  "ate_3px_pct": 100.0,
+  "acima_3px_pct": 0.0,
+  "media_centro_px": 0.003,
+  "max_centro_px": 0.5,
+  "media_borda_px": 0.008,
+  "max_borda_px": 1,
+  "recomendacao_snapshot_move_tolerance": 3
+}

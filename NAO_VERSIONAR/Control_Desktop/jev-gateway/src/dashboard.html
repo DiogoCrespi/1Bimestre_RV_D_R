@@ -1,0 +1,509 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>jev-gateway dashboard</title>
+<style>
+  :root {
+    color-scheme: light;
+    --plane: #f9f9f7; --surface: #fcfcfb; --ink: #0b0b0b; --ink-2: #52514e; --muted: #898781;
+    --grid: #e1e0d9; --axis: #c3c2b7; --border: rgba(11, 11, 11, 0.1); --wash: rgba(11, 11, 11, 0.04);
+    --direct: #2a78d6; --forced: #eb6834; --hint: #1baf7a; --none: #eda100; --passthrough: #a9a79f;
+    --good: #0ca30c; --warning: #fab219; --critical: #d03b3b;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      color-scheme: dark;
+      --plane: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7; --muted: #898781;
+      --grid: #2c2c2a; --axis: #383835; --border: rgba(255, 255, 255, 0.1); --wash: rgba(255, 255, 255, 0.05);
+      --direct: #3987e5; --forced: #d95926; --hint: #199e70; --none: #c98500; --passthrough: #5d5c57;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--plane); color: var(--ink); font: 14px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 1180px; margin: 0 auto; padding: 20px 16px 48px; display: grid; gap: 16px; }
+  header { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; }
+  h1 { font-size: 18px; margin: 0; font-weight: 650; }
+  h2 { font-size: 13px; margin: 0 0 12px; font-weight: 600; color: var(--ink-2); }
+  .spacer { flex: 1; }
+  .live { color: var(--muted); font-size: 12px; }
+  .seg { display: inline-flex; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; background: var(--surface); }
+  .seg button { font: inherit; font-size: 12px; color: var(--ink-2); background: none; border: 0; padding: 5px 10px; cursor: pointer; }
+  .seg button:hover { background: var(--wash); }
+  .seg button[aria-pressed="true"] { background: var(--ink); color: var(--surface); }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px; min-width: 0; }
+  .cols { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+
+  .router { display: grid; gap: 6px; border-left: 4px solid var(--state); }
+  .router .who { font-size: 12px; color: var(--ink-2); }
+  .router .state { display: flex; align-items: center; gap: 10px; font-size: 28px; font-weight: 650; line-height: 1.15; }
+  .router .icon { flex: none; width: 26px; height: 26px; border-radius: 50%; background: var(--state); color: #fff; font-size: 15px; font-weight: 700; display: grid; place-items: center; }
+  .router .why { color: var(--ink-2); }
+  .router .meta { color: var(--muted); font-size: 12px; overflow-wrap: anywhere; }
+  .s-routing { --state: var(--good); } .s-passthrough { --state: var(--warning); } .s-failing { --state: var(--critical); }
+  .s-idle, .s-offline, .s-baseline { --state: var(--muted); }
+  .router .switch { justify-self: start; font: inherit; font-size: 12px; color: var(--ink); background: none; border: 1px solid var(--border); border-radius: 6px; padding: 4px 10px; cursor: pointer; }
+  .router .switch:hover { background: var(--wash); }
+  .compare { width: 100%; border-collapse: collapse; }
+  .compare th, .compare td { padding: 6px 8px; border-bottom: 1px solid var(--border); text-align: right; font-variant-numeric: tabular-nums; }
+  .compare th:first-child, .compare td:first-child { text-align: left; color: var(--ink-2); font-weight: 400; }
+  .compare .delta { color: var(--ink-2); font-size: 12px; }
+  .s-passthrough .icon { color: #0b0b0b; }
+
+  .tiles { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+  .tile { padding: 12px 14px; }
+  .tile .label { font-size: 12px; color: var(--ink-2); }
+  .tile .value { font-size: 24px; font-weight: 650; }
+  .tile .sub { font-size: 12px; color: var(--muted); }
+
+  .share { display: flex; gap: 2px; height: 16px; border-radius: 4px; overflow: hidden; background: var(--wash); }
+  .share span { min-width: 2px; }
+  .legend { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 12px; font-size: 12px; color: var(--ink-2); }
+  .legend b { color: var(--ink); font-weight: 600; }
+  .dot { display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin-right: 6px; background: var(--c); }
+  .c-direct { --c: var(--direct); } .c-forced { --c: var(--forced); } .c-hint { --c: var(--hint); }
+  .c-none { --c: var(--none); } .c-passthrough { --c: var(--passthrough); } .c-failed { --c: var(--critical); }
+
+  .timeline { display: flex; align-items: flex-end; gap: 2px; height: 96px; border-bottom: 1px solid var(--axis); margin-top: 16px; }
+  .timeline .col { flex: 1; height: 100%; display: flex; flex-direction: column-reverse; align-items: center; gap: 2px; outline: none; }
+  .timeline .col span { width: 100%; max-width: 24px; background: var(--c); }
+  .timeline .col span:last-child { border-radius: 4px 4px 0 0; }
+  .timeline .col:hover, .timeline .col:focus-visible { background: var(--wash); }
+  .axis { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); margin-top: 4px; }
+  #tip { position: fixed; z-index: 2; pointer-events: none; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 8px 10px; font-size: 12px; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15); display: none; }
+  #tip div { display: flex; gap: 12px; justify-content: space-between; color: var(--ink-2); }
+  #tip b { color: var(--ink); }
+
+  .reasons { display: grid; gap: 10px; }
+  .reason .top { display: flex; gap: 8px; align-items: baseline; }
+  .reason code { font: 600 12px ui-monospace, SFMono-Regular, Menlo, monospace; }
+  .reason .count { margin-left: auto; font-variant-numeric: tabular-nums; font-weight: 600; }
+  .reason .bar { height: 6px; border-radius: 0 4px 4px 0; background: var(--c); margin: 4px 0 2px; min-width: 2px; }
+  .reason .text { font-size: 12px; color: var(--ink-2); }
+  .tag { font-size: 11px; color: var(--ink-2); border: 1px solid var(--border); border-radius: 999px; padding: 0 7px; white-space: nowrap; }
+  .empty { color: var(--muted); font-size: 13px; }
+
+  .scroll { overflow-x: auto; margin: 0 -16px -16px; }
+  table { border-collapse: collapse; width: 100%; font-size: 12.5px; font-variant-numeric: tabular-nums; }
+  th, td { text-align: left; padding: 7px 8px; white-space: nowrap; border-top: 1px solid var(--grid); }
+  th { color: var(--ink-2); font-weight: 600; border-top: 0; }
+  th:first-child, td:first-child { padding-left: 16px; }
+  th:last-child, td:last-child { padding-right: 16px; }
+  td.num, th.num { text-align: right; }
+  td.reason-cell { max-width: 220px; overflow: hidden; text-overflow: ellipsis; color: var(--ink-2); }
+  tr.before td { opacity: 0.55; }
+  tbody tr:hover td { background: var(--wash); }
+  .note { font-size: 12px; color: var(--muted); margin: 0 0 12px; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>jev-gateway</h1>
+    <span class="live" id="live">connecting…</span>
+    <span class="spacer"></span>
+    <div class="seg" id="clients" role="group" aria-label="Client"></div>
+    <div class="seg" id="ranges" role="group" aria-label="Time range"></div>
+  </header>
+
+  <section class="cols" id="routers" aria-label="Router status"></section>
+  <section class="tiles" id="tiles" aria-label="Totals"></section>
+
+  <section class="cols">
+    <div class="card">
+      <h2>What happened to each request</h2>
+      <div class="share" id="share"></div>
+      <div class="legend" id="legend"></div>
+      <div class="timeline" id="timeline"></div>
+      <div class="axis" id="axis"></div>
+    </div>
+    <div class="card">
+      <h2>Why requests were not routed</h2>
+      <div class="reasons" id="reasons"></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Token use: with Jev routing vs. baseline</h2>
+    <p class="note" id="compare-note"></p>
+    <div class="scroll"><table class="compare" id="compare"></table></div>
+  </section>
+
+  <section class="card">
+    <h2>Recent requests</h2>
+    <p class="note" id="note"></p>
+    <div class="scroll"><table>
+      <thead><tr>
+        <th>Time</th><th>Client</th><th>Path</th><th>Model</th><th class="num">Tools</th><th>Mode</th><th>Tool</th>
+        <th class="num">Conf.</th><th>Reason</th><th class="num">Status</th><th class="num">Jev ms</th>
+        <th class="num">In</th><th class="num">Out</th><th class="num">Secs</th>
+      </tr></thead>
+      <tbody id="rows"></tbody>
+    </table></div>
+  </section>
+</main>
+<div id="tip" role="status"></div>
+
+<script>
+"use strict";
+// Everything shown here comes from /dashboard/events, which carries request metadata only. Names
+// in it (models, tools, reasons) are still someone else's strings: they reach the DOM through
+// textContent, never innerHTML.
+
+const POLL_MS = 2000;
+const IDLE_MS = 5 * 60 * 1000;
+const MAX_ROWS = 200;
+const KEPT_PER_ROUTER = 1000;
+const JEV_USD_PER_MILLION_INPUT_TOKENS = 0.042;
+const RANGES = [["15 min", 15 * 60e3], ["1 h", 60 * 60e3], ["24 h", 24 * 60 * 60e3], ["All", Infinity]];
+const CATEGORIES = [
+  ["direct", "direct — answered without the LLM"],
+  ["forced", "forced — tool_choice set to Jev's pick"],
+  ["hint", "hint — Jev's pick suggested to the LLM"],
+  ["none", "none — tool_choice none"],
+  ["passthrough", "passthrough — the LLM decided"],
+  ["failed", "passthrough — Jev failed"],
+];
+// [who made the call, what it means]
+const REASONS = {
+  no_tools: ["Jev not asked", "The request carried no tools, so there was nothing to select."],
+  no_messages: ["Jev not asked", "The request had no conversation to decide on."],
+  previous_response_id: ["Jev not asked", "The conversation lives upstream (previous_response_id); the router can't see it."],
+  agent_message: ["Jev not asked", "The conversation holds a message between Codex agents (agent_message), which the router cannot read."],
+  non_function_tools: ["Jev not asked", "The roster has tools that aren't plain functions."],
+  malformed_tools: ["Jev not asked", "A tool in the roster has no name or no type; upstream gets to reject it."],
+  unsafe_tool_name: ["Jev not asked", "A tool's name has spaces, quotes or brackets in it. No provider accepts such a name, and the router won't repeat it to a model."],
+  unreadable_request: ["Jev not asked", "The body was JSON but not the shape this API documents; upstream gets to reject it."],
+  too_many_tools: ["Jev not asked", "The tool roster is larger than the router can shortlist."],
+  duplicate_tool_names: ["Jev not asked", "Two tools share a name."],
+  reserved_tool_name: ["Jev not asked", "A tool is named no_tool_needed, which the router reserves."],
+  tool_choice_already_decided: ["Jev not asked", "The client already fixed tool_choice itself."],
+  routing_disabled: ["Jev not asked", "Routing is switched off (baseline mode): tokens are metered, Jev is never asked."],
+  disabled_by_header: ["Jev not asked", "The client sent x-jev-gateway: off."],
+  unparseable_body: ["Jev not asked", "The body wasn't readable JSON; upstream gets to reject it."],
+  low_confidence: ["Jev asked", "Jev's confidence was below JEV_MIN_CONFIDENCE."],
+  jev_answers_disagree: ["Jev asked", "The tool pick and the needs-a-tool check contradicted each other."],
+  no_tool_needed: ["Jev asked", "Jev said no tool is needed; left to the LLM (hint-only request, or JEV_ON_NONE=passthrough)."],
+  hosted_tool_selected: ["Jev asked", "Jev picked a provider-run tool, which can't be forced by name."],
+  namespaced_tool_selected: ["Jev asked", "Jev picked a namespaced tool, which backends refuse to force."],
+  jev_unknown_tool: ["Jev asked", "Jev named a tool that isn't in the roster."],
+  upstream_rejected: ["Jev asked", "Upstream refused the rewritten request; the original was replayed."],
+  jev_error: ["Jev failed", "The Jev call errored or timed out. Check TYPESAFE_API_KEY and the network."],
+  jev_unexpected_answer: ["Jev failed", "Jev's reply didn't contain the expected answers."],
+  router_error: ["Router failed", "The router hit a bug of its own and sent the original request on. Please report the reason shown in the log."],
+};
+
+const params = new URLSearchParams(location.search);
+const key = params.get("key");
+const ownPort = location.port || (location.protocol === "https:" ? "443" : "80");
+// The launchers' default ports and the standalone server's; `?peers=8795,8796` adds custom ones,
+// `?peers=none` watches this router only.
+const peers = params.get("peers");
+const ports = new Set(peers === "none" ? [ownPort] : [ownPort, "8787", "8788", "8789", "8790", "8791", "8792", "8793", ...(peers ?? "").split(",").filter(Boolean)]);
+const sources = [...ports].map((port) => ({
+  port,
+  own: port === ownPort,
+  // Another router has its own key, if any; ours is only ever sent back to where it came from.
+  url: port === ownPort ? "/dashboard/events?" + (key ? "key=" + encodeURIComponent(key) + "&" : "") : `${location.protocol}//${location.hostname}:${port}/dashboard/events?`,
+  // Same rule for the routing switch: a bodyless POST, so crossing ports needs no preflight.
+  routingUrl: port === ownPort ? "/dashboard/routing?" + (key ? "key=" + encodeURIComponent(key) + "&" : "") : `${location.protocol}//${location.hostname}:${port}/dashboard/routing?`,
+  events: [], lastSeq: 0, router: undefined, up: false, seen: false, misses: 0, wait: 0,
+}));
+
+const view = { client: "all", range: RANGES[1][1] };
+let signature = "";
+
+const $ = (id) => document.getElementById(id);
+function h(tag, attrs, ...children) {
+  const node = document.createElement(tag);
+  for (const [name, value] of Object.entries(attrs ?? {})) if (value !== undefined) node.setAttribute(name, value);
+  node.append(...children.filter((child) => child !== undefined && child !== ""));
+  return node;
+}
+
+const reasonKey = (reason) => ["jev_error", "router_error", "upstream_rejected"].find((prefix) => reason.startsWith(prefix)) ?? reason;
+const failed = (event) => event.mode === "passthrough" && (REASONS[reasonKey(event.reason ?? "")] ?? [])[0] === "Jev failed";
+const category = (event) => (failed(event) ? "failed" : event.mode);
+const routed = (event) => event.mode !== "passthrough";
+const baseline = (event) => event.reason === "routing_disabled";
+const at = (event) => Date.parse(event.time);
+
+const int = (n) => Math.round(n).toLocaleString("en-US");
+const pct = (part, whole) => (whole ? Math.round((100 * part) / whole) + "%" : "–");
+const clock = (ms, withDate) => new Date(ms).toLocaleString([], withDate ? { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" } : { hour: "2-digit", minute: "2-digit", second: "2-digit" });
+function ago(ms) {
+  const s = Math.max(0, Math.round(ms / 1000));
+  if (s < 90) return s + " s";
+  if (s < 90 * 60) return Math.round(s / 60) + " min";
+  if (s < 36 * 3600) return Math.round(s / 3600) + " h";
+  return Math.round(s / 86400) + " d";
+}
+
+async function poll(source) {
+  // A port nobody ever answered on is probably just not in use: look again, less often each time
+  // and at most once a minute, since every refused probe is an error line in the browser console.
+  if (!source.own && !source.seen && source.wait-- > 0) return;
+  try {
+    const response = await fetch(source.url + "since=" + source.lastSeq, { signal: AbortSignal.timeout(1500) });
+    if (!response.ok) throw new Error(String(response.status));
+    const data = await response.json();
+    if (source.router && source.router.startedAt !== data.router.startedAt && source.lastSeq > 0) {
+      // The router restarted and its numbering with it: what we asked for makes no sense to it.
+      Object.assign(source, { events: [], lastSeq: 0, router: data.router });
+      return poll(source);
+    }
+    source.router = data.router;
+    source.events = source.events.concat(data.events.map((event) => ({ ...event, client: data.router.client, port: source.port }))).slice(-KEPT_PER_ROUTER);
+    source.lastSeq = data.events.length ? data.events.at(-1).seq : source.lastSeq;
+    source.up = source.seen = true;
+  } catch {
+    source.up = false;
+    if (!source.seen) source.wait = Math.min(30, 5 * ++source.misses);
+  }
+}
+
+function status(source, now) {
+  if (!source.up) return ["offline", "×", "Offline", "This router isn't answering. Start it again to keep routing."];
+  const recent = source.events.filter((event) => now - at(event) < IDLE_MS);
+  if (source.router?.routing === false) {
+    return ["baseline", "◌", "Baseline — routing off", `Jev is switched off: ${recent.length} request${recent.length === 1 ? "" : "s"} in the last 5 minutes went straight to the LLM, metered for comparison.`];
+  }
+  if (recent.length === 0) {
+    const last = source.events.at(-1);
+    return ["idle", "–", "Idle", "No requests in the last 5 minutes" + (last ? `; the last one was ${ago(now - at(last))} ago (${last.mode}).` : ".")];
+  }
+  const asked = recent.filter((event) => event.jev || failed(event));
+  if (asked.length && failed(asked.at(-1))) {
+    return ["failing", "!", "Jev is failing", `The latest Jev call failed (${asked.at(-1).reason}). Requests fall back to the LLM.`];
+  }
+  const decided = recent.filter(routed).length;
+  if (decided) return ["routing", "✓", "Routing", `Jev decided ${decided} of the last ${recent.length} requests (5 min).`];
+  const reasons = tally(recent.map((event) => reasonKey(event.reason ?? "unknown")));
+  return ["passthrough", "→", "Passthrough only", `None of the last ${recent.length} requests were routed — mostly ${reasons[0][0]}.`];
+}
+
+function tally(keys) {
+  const counts = new Map();
+  for (const name of keys) counts.set(name, (counts.get(name) ?? 0) + 1);
+  return [...counts].sort((a, b) => b[1] - a[1]);
+}
+
+async function setRouting(source, enabled) {
+  try {
+    const response = await fetch(source.routingUrl + "enabled=" + enabled, { method: "POST", signal: AbortSignal.timeout(1500) });
+    if (response.ok) source.router.routing = (await response.json()).routing;
+  } catch {
+    // The next poll shows the router's real state either way.
+  }
+  signature = "";
+  render();
+}
+
+function renderRouters(now) {
+  $("routers").replaceChildren(...sources.filter((source) => source.seen || source.own).map((source) => {
+    const [state, icon, title, why] = status(source, now);
+    const router = source.router;
+    return h("div", { class: `card router s-${state}` },
+      h("div", { class: "who" }, `${router?.client ?? "router"} · :${source.port}`),
+      h("div", { class: "state" }, h("span", { class: "icon", "aria-hidden": "true" }, icon), title),
+      h("div", { class: "why" }, why),
+      router && source.up && routingSwitch(source),
+      router && h("div", { class: "meta" }, `→ ${router.upstream} · Jev model ${router.jevModel}${router.jevProvider ? " via " + router.jevProvider : ""} · min confidence ${router.minConfidence} · up ${ago(now - Date.parse(router.startedAt))} · ${int(router.recorded)} requests logged`),
+    );
+  }));
+}
+
+function routingSwitch(source) {
+  const on = source.router.routing !== false;
+  const node = h("button", { type: "button", class: "switch" }, on ? "Switch routing off (measure a baseline)" : "Switch routing back on");
+  node.addEventListener("click", () => setRouting(source, !on));
+  return node;
+}
+
+const sum = (events, pick) => events.reduce((total, event) => total + (pick(event) ?? 0), 0);
+
+// Both columns cover everything that went through in that state — passthroughs included — because
+// that is what each way of working really costs. It only means something if the work is alike.
+function renderCompare(events) {
+  const metered = events.filter((event) => event.usage);
+  const groups = [["With Jev routing", metered.filter((event) => !baseline(event))], ["Baseline (routing off)", metered.filter(baseline)]];
+  const per = (group, pick) => (group.length ? sum(group, pick) / group.length : undefined);
+  const rows = [
+    ["LLM requests metered", (group) => group.length, int],
+    ["Input tokens / request", (group) => per(group, (event) => event.usage.input), int],
+    ["…of which cached", (group) => (sum(group, (event) => event.usage.input) ? (100 * sum(group, (event) => event.usage.cached)) / sum(group, (event) => event.usage.input) : undefined), (value) => Math.round(value) + "%"],
+    ["Output tokens / request", (group) => per(group, (event) => event.usage.output), int],
+    ["…of which reasoning", (group) => per(group, (event) => event.usage.reasoning), int],
+    ["Seconds / request", (group) => per(group, (event) => event.durationMs / 1000), (value) => value.toFixed(1)],
+    ["Total input tokens", (group) => sum(group, (event) => event.usage.input), int],
+    ["Total output tokens", (group) => sum(group, (event) => event.usage.output), int],
+  ];
+  const cell = (value, format) => (value === undefined || Number.isNaN(value) ? "–" : format(value));
+  $("compare").replaceChildren(
+    h("thead", {}, h("tr", {}, h("th", {}, ""), ...groups.map(([label]) => h("th", {}, label)), h("th", {}, "Difference"))),
+    h("tbody", {}, ...rows.map(([label, measure, format], index) => {
+      const [withJev, without] = groups.map(([, group]) => measure(group));
+      const comparable = index > 0 && index < 6 && withJev !== undefined && without;
+      const delta = comparable ? (100 * (withJev - without)) / without : undefined;
+      return h("tr", {}, h("td", {}, label), h("td", {}, cell(withJev, format)), h("td", {}, cell(without, format)),
+        h("td", { class: "delta" }, delta === undefined || !Number.isFinite(delta) ? "" : (delta > 0 ? "+" : "") + Math.round(delta) + "%"));
+    })),
+  );
+  const direct = events.filter((event) => event.mode === "direct").length;
+  $("compare-note").textContent = groups[1][1].length
+    ? `Per-request averages in the selected range${direct ? `; ${int(direct)} direct answer${direct === 1 ? "" : "s"} cost no LLM tokens at all and are not in the averages` : ""}. Only meaningful when both columns did similar work.`
+    : "No baseline yet. Switch routing off on a router card, do a comparable piece of work, then switch it back on: both columns fill in.";
+}
+
+function renderTiles(events) {
+  const asked = events.filter((event) => event.jev);
+  const failures = events.filter(failed).length;
+  const latencies = asked.map((event) => event.jev.latencyMs).sort((a, b) => a - b);
+  const mean = (values) => (values.length ? values.reduce((sum, value) => sum + value, 0) / values.length : undefined);
+  const tokens = asked.reduce((sum, event) => sum + event.jev.inputTokens, 0);
+  const decided = events.filter(routed).length;
+  const tile = (label, value, sub) => h("div", { class: "card tile" }, h("div", { class: "label" }, label), h("div", { class: "value" }, value), h("div", { class: "sub" }, sub));
+  const avgLatency = mean(latencies);
+  const avgConfidence = mean(asked.map((event) => event.jev.confidence));
+  $("tiles").replaceChildren(
+    tile("Requests", int(events.length), "through the gateway"),
+    tile("Routed by Jev", pct(decided, events.length), `${int(decided)} requests`),
+    tile("Passed through", pct(events.length - decided, events.length), `${int(events.length - decided)} requests`),
+    tile("Jev calls", int(asked.length + failures), failures ? `${int(failures)} failed` : "none failed"),
+    tile("Jev latency", avgLatency === undefined ? "–" : int(avgLatency) + " ms", latencies.length ? `p95 ${int(latencies[Math.min(latencies.length - 1, Math.floor(latencies.length * 0.95))])} ms` : "no calls yet"),
+    tile("Jev confidence", avgConfidence === undefined ? "–" : avgConfidence.toFixed(2), "average of its tool picks"),
+    tile("LLM input tokens", int(sum(events, (event) => event.usage?.input)), `${pct(sum(events, (event) => event.usage?.cached), sum(events, (event) => event.usage?.input))} served from cache`),
+    tile("LLM output tokens", int(sum(events, (event) => event.usage?.output)), `${int(sum(events, (event) => event.usage?.reasoning))} of them reasoning`),
+    tile("Jev input tokens", int(tokens), `≈ $${((tokens / 1e6) * JEV_USD_PER_MILLION_INPUT_TOKENS).toFixed(4)} at $${JEV_USD_PER_MILLION_INPUT_TOKENS}/M`),
+  );
+}
+
+function renderShare(events) {
+  const counts = new Map(tally(events.map(category)));
+  const present = CATEGORIES.filter(([name]) => counts.get(name));
+  $("share").replaceChildren(...present.map(([name, label]) => h("span", { class: `c-${name}`, style: `flex:${counts.get(name)};background:var(--c)`, title: `${label}: ${counts.get(name)}` })));
+  $("legend").replaceChildren(...(present.length ? present : CATEGORIES.slice(0, 5)).map(([name, label]) =>
+    h("span", {}, h("i", { class: `dot c-${name}` }), label + " ", h("b", {}, `${int(counts.get(name) ?? 0)} · ${pct(counts.get(name) ?? 0, events.length)}`))));
+}
+
+function renderTimeline(events, now) {
+  const BUCKETS = 36;
+  const from = view.range === Infinity ? Math.min(now - RANGES[0][1], ...events.map(at)) : now - view.range;
+  const width = (now - from) / BUCKETS;
+  const buckets = Array.from({ length: BUCKETS }, (_, index) => ({ start: from + index * width, counts: new Map(), total: 0 }));
+  for (const event of events) {
+    const bucket = buckets[Math.min(BUCKETS - 1, Math.floor((at(event) - from) / width))];
+    if (!bucket) continue;
+    bucket.counts.set(category(event), (bucket.counts.get(category(event)) ?? 0) + 1);
+    bucket.total++;
+  }
+  const peak = Math.max(1, ...buckets.map((bucket) => bucket.total));
+  const long = now - from > 20 * 3600e3;
+  $("timeline").replaceChildren(...buckets.map((bucket) => {
+    const col = h("div", { class: "col", tabindex: "0", "aria-label": `${clock(bucket.start, long)}: ${bucket.total} requests` },
+      ...CATEGORIES.filter(([name]) => bucket.counts.get(name)).map(([name]) => h("span", { class: `c-${name}`, style: `height:${(100 * bucket.counts.get(name)) / peak}%` })));
+    const show = () => showTip(col, [[`${clock(bucket.start, long)} – ${clock(bucket.start + width, long)}`, int(bucket.total)], ...CATEGORIES.filter(([name]) => bucket.counts.get(name)).map(([name]) => [name === "failed" ? "Jev failed" : name, int(bucket.counts.get(name))])]);
+    col.addEventListener("pointerenter", show);
+    col.addEventListener("focus", show);
+    col.addEventListener("pointerleave", hideTip);
+    col.addEventListener("blur", hideTip);
+    return col;
+  }));
+  $("axis").replaceChildren(h("span", {}, clock(from, long)), h("span", {}, `requests per ${ago(width)} · peak ${peak}`), h("span", {}, "now"));
+}
+
+function showTip(anchor, rows) {
+  const tip = $("tip");
+  tip.replaceChildren(...rows.map(([label, value]) => h("div", {}, h("span", {}, label), h("b", {}, value))));
+  tip.style.display = "block";
+  const box = anchor.getBoundingClientRect();
+  tip.style.left = Math.max(8, Math.min(innerWidth - tip.offsetWidth - 8, box.left + box.width / 2 - tip.offsetWidth / 2)) + "px";
+  tip.style.top = Math.max(8, box.top - tip.offsetHeight - 6) + "px";
+}
+const hideTip = () => ($("tip").style.display = "none");
+
+function renderReasons(events) {
+  const passed = events.filter((event) => !routed(event));
+  const counts = tally(passed.map((event) => reasonKey(event.reason ?? "unknown")));
+  if (!counts.length) return $("reasons").replaceChildren(h("div", { class: "empty" }, events.length ? "Every request in this range was routed by Jev." : "No requests in this range yet."));
+  $("reasons").replaceChildren(...counts.map(([name, count]) => {
+    const [who, meaning] = REASONS[name] ?? ["", ""];
+    return h("div", { class: `reason c-${who === "Jev failed" ? "failed" : "passthrough"}` },
+      h("div", { class: "top" }, h("code", {}, name), who && h("span", { class: "tag" }, who), h("span", { class: "count" }, `${int(count)} · ${pct(count, passed.length)}`)),
+      h("div", { class: "bar", style: `width:${(100 * count) / counts[0][1]}%` }),
+      h("div", { class: "text" }, meaning));
+  }));
+}
+
+function renderRows(events) {
+  const started = new Map(sources.map((source) => [source.port, Date.parse(source.router?.startedAt ?? 0)]));
+  const today = new Date().toDateString();
+  $("rows").replaceChildren(...events.slice(-MAX_ROWS).reverse().map((event) => {
+    const name = category(event);
+    return h("tr", { class: at(event) < started.get(event.port) ? "before" : undefined },
+      h("td", {}, clock(at(event), new Date(at(event)).toDateString() !== today)),
+      h("td", {}, event.client),
+      h("td", {}, event.path),
+      h("td", {}, event.model ?? "–"),
+      h("td", { class: "num" }, String(event.tools)),
+      h("td", {}, h("i", { class: `dot c-${name}` }), event.mode),
+      h("td", {}, event.tool ?? (event.jev && event.mode === "passthrough" ? `(${event.jev.choice})` : "–")),
+      h("td", { class: "num" }, (event.confidence ?? event.jev?.confidence)?.toFixed(2) ?? "–"),
+      h("td", { class: "reason-cell", title: event.reason }, event.reason ?? ""),
+      h("td", { class: "num" }, event.status === undefined ? "–" : String(event.status)),
+      h("td", { class: "num" }, event.jev ? int(event.jev.latencyMs) : "–"),
+      h("td", { class: "num", title: event.usage ? `${int(event.usage.cached)} cached, ${int(event.usage.cacheWrite)} written to cache` : undefined }, event.usage ? int(event.usage.input) : "–"),
+      h("td", { class: "num", title: event.usage ? `${int(event.usage.reasoning)} reasoning` : undefined }, event.usage ? int(event.usage.output) : "–"),
+      h("td", { class: "num" }, event.durationMs === undefined ? "–" : (event.durationMs / 1000).toFixed(1)));
+  }));
+  $("note").textContent = `Newest first, up to ${MAX_ROWS}. Dimmed rows are from before the router's last restart; a tool in brackets is what Jev picked when the LLM still made the call. A request appears once its reply has finished, which is when the provider reports its tokens (hover In/Out for cache and reasoning).`;
+}
+
+function renderControls() {
+  const clients = [...new Set(sources.filter((source) => source.router).map((source) => source.router.client))];
+  const button = (label, pressed, press) => {
+    const node = h("button", { type: "button", "aria-pressed": String(pressed) }, label);
+    node.addEventListener("click", () => { press(); signature = ""; render(); });
+    return node;
+  };
+  $("clients").hidden = clients.length < 2;
+  $("clients").replaceChildren(...["all", ...clients].map((name) => button(name === "all" ? "All clients" : name, view.client === name, () => (view.client = name))));
+  $("ranges").replaceChildren(...RANGES.map(([label, ms]) => button(label, view.range === ms, () => (view.range = ms))));
+}
+
+function render() {
+  const now = Date.now();
+  renderRouters(now);
+  const up = sources.filter((source) => source.up).length;
+  $("live").textContent = up ? `live · refreshed ${clock(now)}` : "not connected — retrying";
+
+  const events = sources
+    .flatMap((source) => source.events)
+    .filter((event) => (view.client === "all" || event.client === view.client) && now - at(event) <= view.range)
+    .sort((a, b) => at(a) - at(b));
+  // Rebuilding charts and rows under the pointer kills hover and text selection, so only do it
+  // when they would actually differ (new data, another filter, or the time axis moving on).
+  const next = [view.client, view.range, events.length, events.at(-1)?.time, sources.map((source) => `${source.router?.client}${source.router?.routing}`).join(), Math.floor(now / 30e3)].join("|");
+  if (next === signature) return;
+  signature = next;
+  renderControls();
+  renderTiles(events);
+  renderCompare(events);
+  renderShare(events);
+  renderTimeline(events, now);
+  renderReasons(events);
+  renderRows(events);
+}
+
+async function tick() {
+  if (!document.hidden) {
+    await Promise.all(sources.map(poll));
+    render();
+  }
+  setTimeout(tick, POLL_MS);
+}
+tick();
+</script>
+</body>
+</html>

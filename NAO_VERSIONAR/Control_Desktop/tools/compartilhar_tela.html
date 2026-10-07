@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Compartilhar tela</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      background: #000;
+    }
+
+    #screen {
+      position: fixed;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    #output {
+      display: none;
+      width: 100vw;
+      height: 100vh;
+      object-fit: contain;
+      background: #000;
+    }
+
+    #start {
+      position: fixed;
+      inset: 50% auto auto 50%;
+      transform: translate(-50%, -50%);
+      min-width: 210px;
+      padding: 16px 24px;
+      border: 0;
+      border-radius: 10px;
+      color: #fff;
+      background: #1677ff;
+      font: 600 16px system-ui, sans-serif;
+      cursor: pointer;
+    }
+
+    #start:hover {
+      background: #0d63d8;
+    }
+
+    #start:disabled {
+      cursor: wait;
+      opacity: 0.7;
+    }
+  </style>
+</head>
+<body>
+  <video id="screen" autoplay muted playsinline></video>
+  <canvas id="output"></canvas>
+  <button id="start" type="button">Compartilhar tela</button>
+
+  <script>
+    const video = document.querySelector('#screen');
+    const canvas = document.querySelector('#output');
+    const context = canvas.getContext('2d', { alpha: false });
+    const button = document.querySelector('#start');
+    let drawing = false;
+
+    function drawFrame() {
+      if (!drawing) return;
+
+      if (video.videoWidth && video.videoHeight) {
+        if (canvas.width !== video.videoWidth || canvas.height !== video.videoHeight) {
+          canvas.width = video.videoWidth;
+          canvas.height = video.videoHeight;
+        }
+        context.drawImage(video, 0, 0, canvas.width, canvas.height);
+      }
+
+      requestAnimationFrame(drawFrame);
+    }
+
+    function showButton(label = 'Compartilhar tela') {
+      drawing = false;
+      canvas.style.display = 'none';
+      button.textContent = label;
+      button.disabled = false;
+      button.style.display = 'block';
+    }
+
+    async function startSharing() {
+      button.disabled = true;
+      button.textContent = 'Aguardando permissão...';
+
+      try {
+        const stream = await navigator.mediaDevices.getDisplayMedia({
+          video: {
+            displaySurface: 'monitor'
+          },
+          audio: false,
+          preferCurrentTab: false,
+          selfBrowserSurface: 'exclude',
+          surfaceSwitching: 'exclude'
+        });
+
+        video.srcObject = stream;
+        await video.play();
+
+        button.style.display = 'none';
+        canvas.style.display = 'block';
+        drawing = true;
+        drawFrame();
+
+        const track = stream.getVideoTracks()[0];
+        track.addEventListener('ended', () => {
+          drawing = false;
+          video.srcObject = null;
+          context.clearRect(0, 0, canvas.width, canvas.height);
+          showButton('Compartilhar novamente');
+        }, { once: true });
+      } catch (error) {
+        const unsupported = !navigator.mediaDevices?.getDisplayMedia;
+        showButton(unsupported
+          ? 'Navegador não compatível'
+          : 'Tentar compartilhar novamente');
+      }
+    }
+
+    button.addEventListener('click', startSharing);
+  </script>
+</body>
+</html>

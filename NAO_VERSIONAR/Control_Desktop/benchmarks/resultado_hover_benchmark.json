@@ -1,0 +1,131 @@
+{
+  "resultados_por_settle": {
+    "100ms": [
+      {
+        "alvo": "7. Botão Fechar do Chrome (Win32/DWM)",
+        "esperado": true,
+        "detectado": true,
+        "acertou": true,
+        "forma_bits": 0,
+        "delta_cor": 137.8,
+        "elapsed_ms": 125.6,
+        "cursor_ok": true
+      },
+      {
+        "alvo": "8. Menu Iniciar do Windows (Taskbar)",
+        "esperado": true,
+        "detectado": false,
+        "acertou": false,
+        "forma_bits": 0,
+        "delta_cor": 0.0,
+        "elapsed_ms": 144.4,
+        "cursor_ok": true
+      },
+      {
+        "alvo": "9. Barra de Tarefas Espaço Vazio (Estático)",
+        "esperado": false,
+        "detectado": false,
+        "acertou": true,
+        "forma_bits": 0,
+        "delta_cor": 0.0,
+        "elapsed_ms": 137.1,
+        "cursor_ok": true
+      }
+    ],
+    "220ms": [
+      {
+        "alvo": "7. Botão Fechar do Chrome (Win32/DWM)",
+        "esperado": true,
+        "detectado": true,
+        "acertou": true,
+        "forma_bits": 0,
+        "delta_cor": 190.3,
+        "elapsed_ms": 250.8,
+        "cursor_ok": true
+      },
+      {
+        "alvo": "8. Menu Iniciar do Windows (Taskbar)",
+        "esperado": true,
+        "detectado": false,
+        "acertou": false,
+        "forma_bits": 0,
+        "delta_cor": 0.0,
+        "elapsed_ms": 262.4,
+        "cursor_ok": true
+      },
+      {
+        "alvo": "9. Barra de Tarefas Espaço Vazio (Estático)",
+        "esperado": false,
+        "detectado": false,
+        "acertou": true,
+        "forma_bits": 0,
+        "delta_cor": 0.0,
+        "elapsed_ms": 271.1,
+        "cursor_ok": true
+      }
+    ],
+    "350ms": [
+      {
+        "alvo": "7. Botão Fechar do Chrome (Win32/DWM)",
+        "esperado": true,
+        "detectado": true,
+        "acertou": true,
+        "forma_bits": 0,
+        "delta_cor": 190.3,
+        "elapsed_ms": 404.2,
+        "cursor_ok": true
+      },
+      {
+        "alvo": "8. Menu Iniciar do Windows (Taskbar)",
+        "esperado": true,
+        "detectado": false,
+        "acertou": false,
+        "forma_bits": 0,
+        "delta_cor": 0.0,
+        "elapsed_ms": 391.7,
+        "cursor_ok": true
+      },
+      {
+        "alvo": "9. Barra de Tarefas Espaço Vazio (Estático)",
+        "esperado": false,
+        "detectado": false,
+        "acertou": true,
+        "forma_bits": 0,
+        "delta_cor": 0.0,
+        "elapsed_ms": 395.0,
+        "cursor_ok": true
+      }
+    ]
+  },
+  "calibracao_limiares": [
+    {
+      "min_delta": 2,
+      "min_color": 4.0,
+      "acuracia": 66.7,
+      "precisao": 100.0,
+      "recall": 50.0,
+      "fp": 0,
+      "fn": 1
+    },
+    {
+      "min_delta": 3,
+      "min_color": 6.0,
+      "acuracia": 66.7,
+      "precisao": 100.0,
+      "recall": 50.0,
+      "fp": 0,
+      "fn": 1
+    },
+    {
+      "min_delta": 4,
+      "min_color": 10.0,
+      "acuracia": 66.7,
+      "precisao": 100.0,
+      "recall": 50.0,
+      "fp": 0,
+      "fn": 1
+    }
+  ],
+  "cursor_preso_detectado": true,
+  "cursor_restaurado_preso": true
+}

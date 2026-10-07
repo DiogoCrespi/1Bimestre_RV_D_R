@@ -1,0 +1,197 @@
+{
+  "termo_alvo": "camera",
+  "teste_a_ambiguous": {
+    "status": 409,
+    "passou": true,
+    "detalhes": {
+      "ok": false,
+      "error_code": "ambiguous_target",
+      "error": "Texto 'camera' encontrou 8 candidatos.",
+      "candidate_count": 8,
+      "candidates": [
+        {
+          "source": "som",
+          "tag": 1215,
+          "id": null,
+          "text": "Main Camera",
+          "type": "text",
+          "center": [
+            1498,
+            161
+          ],
+          "bbox": [
+            1451,
+            155,
+            94,
+            12
+          ]
+        },
+        {
+          "source": "som",
+          "tag": 1219,
+          "id": null,
+          "text": "Main Camera",
+          "type": "text",
+          "center": [
+            145,
+            193
+          ],
+          "bbox": [
+            99,
+            187,
+            92,
+            12
+          ]
+        },
+        {
+          "source": "som",
+          "tag": 1222,
+          "id": null,
+          "text": "Tag MainCamera",
+          "type": "text",
+          "center": [
+            1477,
+            191
+          ],
+          "bbox": [
+            1415,
+            183,
+            125,
+            16
+          ]
+        },
+        {
+          "source": "som",
+          "tag": 1244,
+          "id": null,
+          "text": "Camera",
+          "type": "text",
+          "center": [
+            1468,
+            344
+          ],
+          "bbox": [
+            1440,
+            338,
+            56,
+            12
+          ]
+        },
+        {
+          "source": "som",
+          "tag": 1266,
+          "id": null,
+          "text": "Physical Camera",
+          "type": "text",
+          "center": [
+            1489,
+            558
+          ],
+          "bbox": [
+            1431,
+            551,
+            116,
+            15
+          ]
+        },
+        {
+          "source": "som",
+          "tag": 1279,
+          "id": null,
+          "text": "Cameras",
+          "type": "text",
+          "center": [
+            1315,
+            697
+          ],
+          "bbox": [
+            1279,
+            691,
+            72,
+            13
+          ]
+        },
+        {
+          "source": "som",
+          "tag": 1042,
+          "id": null,
+          "text": "Universal Additional Camera Data (Script)",
+          "type": "text",
+          "center": [
+            1591,
+            723
+          ],
+          "bbox": [
+            1441,
+            716,
+            300,
+            15
+          ]
+        },
+        {
+          "source": "som",
+          "tag": 1299,
+          "id": null,
+          "text": "Camera",
+          "type": "text",
+          "center": [
+            270,
+            897
+          ],
+          "bbox": [
+            245,
+            892,
+            50,
+            11
+          ]
+        }
+      ],
+      "hint": "repita com scope=\"active_modal\" se o alvo esta num dialogo ou menu recem-aberto (ou \"active_dialog\"/\"context_menu\" para ser especifico), ou scope=\"window\" para limitar a janela em foco",
+      "scope": null,
+      "scope_resolved": null,
+      "frame_id": "d57a86236b084bb0bbd79fcceca55056",
+      "actionDispatched": false,
+      "outcome": "not_dispatched",
+      "outcomeVerified": false
+    }
+  },
+  "teste_b_context_menu": {
+    "status": 200,
+    "passou": true,
+    "detalhes": {
+      "ok": true,
+      "action": "click_text",
+      "found_in": "som",
+      "text": "Camera",
+      "tag": 1299,
+      "id": null,
+      "x": 270,
+      "y": 897,
+      "offset": [
+        0,
+        0
+      ],
+      "scope_resolved": "context_menu",
+      "frame_id": "d57a86236b084bb0bbd79fcceca55056",
+      "actionDispatched": true,
+      "outcomeVerified": false,
+      "outcome": "dispatched"
+    }
+  },
+  "teste_c_scope_unavailable": {
+    "status": 409,
+    "passou": true,
+    "detalhes": {
+      "ok": false,
+      "error_code": "scope_unavailable",
+      "scope": "context_menu",
+      "scope_reason": "sem_menu_aberto",
+      "error": "Escopo 'context_menu' indisponivel (sem_menu_aberto); a busca foi abortada para nao clicar fora dele.",
+      "frame_id": "2b71b47a63d94556ac7f3d3a9b46a562",
+      "actionDispatched": false,
+      "outcome": "not_dispatched",
+      "outcomeVerified": false
+    }
+  },
+  "todos_passaram": true
+}

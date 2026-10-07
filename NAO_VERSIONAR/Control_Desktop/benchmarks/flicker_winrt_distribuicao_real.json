@@ -1,0 +1,14 @@
+{
+  "n_capturas": 30,
+  "intervalo_ms": 100.0,
+  "total_trilhas_validas": 110,
+  "trilhas_com_flicker": 0,
+  "taxa_trilhas_com_flicker": 0.0,
+  "total_gaps_observados": 0,
+  "histograma_k": {},
+  "cobertura": {
+    "N_1": 1.0,
+    "N_2": 1.0,
+    "N_3": 1.0
+  }
+}

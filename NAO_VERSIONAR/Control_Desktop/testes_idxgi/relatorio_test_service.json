@@ -1,0 +1,37 @@
+{
+  "1_tela_ociosa_cache_hit": {
+    "mudou": false,
+    "motivo": "no_frames_presented",
+    "correto": true
+  },
+  "2_movimento_puro_cursor": {
+    "mudou": false,
+    "motivo": "changes_outside_target_window",
+    "correto": true
+  },
+  "3_watermark_pos_acao_scroll": {
+    "mudou": true,
+    "motivo": "screen_dirty",
+    "detalhes": {
+      "watermark": 6,
+      "current_generation": 8,
+      "accumulated_rects_count": 2
+    },
+    "correto": true
+  },
+  "4_janela_fora_da_tela": {
+    "mudou": true,
+    "motivo": "window_completely_offscreen",
+    "correto": true
+  },
+  "5_janela_parcialmente_fora_da_tela": {
+    "mudou": true,
+    "motivo": "window_mostly_offscreen",
+    "correto": true
+  },
+  "6_invalidação_modo_access_lost": {
+    "mudou": true,
+    "motivo": "invalidated_due_to_simulated_access_lost",
+    "correto": true
+  }
+}

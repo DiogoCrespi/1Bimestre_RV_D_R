@@ -1,0 +1,62 @@
+[
+  {
+    "hwnd": 131642,
+    "title": "google System One Model - Pesquisa Google - Google Chrome",
+    "pid": 11536,
+    "rect": [
+      -7,
+      -7,
+      1550,
+      878
+    ],
+    "process": "chrome.exe"
+  },
+  {
+    "hwnd": 197656,
+    "title": "Administrador: Windows PowerShell",
+    "pid": 2928,
+    "rect": [
+      84,
+      502,
+      799,
+      326
+    ],
+    "process": "powershell.exe"
+  },
+  {
+    "hwnd": 262290,
+    "title": "Experiência de Entrada do Windows",
+    "pid": 10592,
+    "rect": [
+      0,
+      0,
+      1536,
+      864
+    ],
+    "process": "TextInputHost.exe"
+  },
+  {
+    "hwnd": 2162984,
+    "title": "Home · Wiki · Infra / Debian12 · GitLab - Google Chrome",
+    "pid": 11536,
+    "rect": [
+      -25600,
+      -25600,
+      159,
+      27
+    ],
+    "process": "chrome.exe"
+  },
+  {
+    "hwnd": 65902,
+    "title": "Program Manager",
+    "pid": 9016,
+    "rect": [
+      0,
+      0,
+      1536,
+      864
+    ],
+    "process": "explorer.exe"
+  }
+]

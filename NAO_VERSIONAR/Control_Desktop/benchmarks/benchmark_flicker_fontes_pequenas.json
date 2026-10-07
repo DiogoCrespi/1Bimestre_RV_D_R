@@ -1,0 +1,54 @@
+{
+  "n_capturas": 40,
+  "intervalo_ms": 100.0,
+  "global": {
+    "nome": "Todas as Marcas",
+    "total_entidades": 86,
+    "entidades_com_flicker": 0,
+    "taxa_flicker": 0.0,
+    "total_eventos_gap": 0,
+    "histograma_k": {},
+    "impostores_detectados": 0,
+    "churn_n0": 0,
+    "churn_por_n": {
+      "1": 0,
+      "2": 0,
+      "3": 0
+    },
+    "absorvidos_por_n": {
+      "1": 0,
+      "2": 0,
+      "3": 0
+    },
+    "reducao_churn_pct": {
+      "N_1": 0.0,
+      "N_2": 0.0,
+      "N_3": 0.0
+    }
+  },
+  "fontes_pequenas": {
+    "nome": "Fontes Pequenas (h <= 13px)",
+    "total_entidades": 52,
+    "entidades_com_flicker": 0,
+    "taxa_flicker": 0.0,
+    "total_eventos_gap": 0,
+    "histograma_k": {},
+    "impostores_detectados": 0,
+    "churn_n0": 0,
+    "churn_por_n": {
+      "1": 0,
+      "2": 0,
+      "3": 0
+    },
+    "absorvidos_por_n": {
+      "1": 0,
+      "2": 0,
+      "3": 0
+    },
+    "reducao_churn_pct": {
+      "N_1": 0.0,
+      "N_2": 0.0,
+      "N_3": 0.0
+    }
+  }
+}

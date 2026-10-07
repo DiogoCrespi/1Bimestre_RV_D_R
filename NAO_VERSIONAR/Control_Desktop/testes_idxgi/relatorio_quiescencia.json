@@ -1,0 +1,90 @@
+{
+  "cenarios": {
+    "1_reacao_com_atrasos": {
+      "delay_50ms": {
+        "delay_configurado_ms": 50,
+        "tempo_estabilizacao_ms": 122.33,
+        "motivo": "target_settled_quiescent",
+        "quiescent": true,
+        "snapshot_prematuro": false,
+        "falso_cache_hit": false
+      },
+      "delay_100ms": {
+        "delay_configurado_ms": 100,
+        "tempo_estabilizacao_ms": 160.06,
+        "motivo": "target_settled_quiescent",
+        "quiescent": true,
+        "snapshot_prematuro": false,
+        "falso_cache_hit": false
+      },
+      "delay_250ms": {
+        "delay_configurado_ms": 250,
+        "tempo_estabilizacao_ms": 347.81,
+        "motivo": "target_settled_quiescent",
+        "quiescent": true,
+        "snapshot_prematuro": false,
+        "falso_cache_hit": false
+      },
+      "delay_500ms": {
+        "delay_configurado_ms": 500,
+        "tempo_estabilizacao_ms": 563.32,
+        "motivo": "target_settled_quiescent",
+        "quiescent": true,
+        "snapshot_prematuro": false,
+        "falso_cache_hit": false
+      }
+    },
+    "2_caret_animacao_continua": {
+      "elapsed_ms": 193.68,
+      "motivo": "target_continuous_activity_timeout",
+      "never_quiescent": true,
+      "fallback_full_snapshot": true,
+      "falso_cache_hit": false
+    },
+    "3_unity_60fps_continuo": {
+      "elapsed_ms": 214.2,
+      "motivo": "target_continuous_activity_timeout",
+      "never_quiescent": true,
+      "fallback_full_snapshot": true,
+      "falso_cache_hit": false
+    },
+    "4_botao_animacao_composta": {
+      "elapsed_ms": 143.67,
+      "activity_events": 3,
+      "motivo": "target_settled_quiescent",
+      "quiescent": true,
+      "snapshot_prematuro": false,
+      "falso_cache_hit": false
+    },
+    "5_acao_sem_efeito_visual": {
+      "elapsed_ms": 131.51,
+      "motivo": "action_target_no_activity_timeout",
+      "fallback_full_snapshot": true,
+      "target_activity_seen": false,
+      "falso_cache_hit": false
+    },
+    "6_abertura_modal_atraso": {
+      "atraso_esperado_ms": 180,
+      "elapsed_ms": 244.03,
+      "motivo": "target_settled_quiescent",
+      "quiescent": true,
+      "snapshot_prematuro": false,
+      "falso_cache_hit": false
+    }
+  },
+  "metricas_consolidadas": {
+    "total_cenarios": 9,
+    "falsos_cache_hits": 0,
+    "snapshots_prematuros": 0,
+    "casos_nunca_quiescentes": 2,
+    "tempos_estabilizacao_ms": {
+      "reacao_50ms": 122.33,
+      "reacao_100ms": 160.06,
+      "reacao_250ms": 347.81,
+      "reacao_500ms": 563.32,
+      "botao_animacao": 143.67,
+      "acao_inerte_timeout": 131.51,
+      "abertura_modal": 244.03
+    }
+  }
+}

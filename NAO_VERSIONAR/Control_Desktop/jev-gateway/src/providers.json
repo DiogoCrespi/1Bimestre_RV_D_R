@@ -1,0 +1,36 @@
+{
+  "typesafe": {
+    "label": "TypeSafe",
+    "note": "the official API, direct from the makers of Jev",
+    "keyEnv": "TYPESAFE_API_KEY",
+    "keyUrl": "https://typesafe.ai",
+    "url": "https://api.typesafe.ai/v1/systemone",
+    "model": "jev-latest"
+  },
+  "openrouter": {
+    "label": "OpenRouter",
+    "note": "Jev through your OpenRouter account and credits",
+    "keyEnv": "OPENROUTER_API_KEY",
+    "keyUrl": "https://openrouter.ai/settings/keys",
+    "url": "https://openrouter.ai/api/alpha/decisions",
+    "model": "typesafe/jev-1.13"
+  },
+  "vercel": {
+    "label": "Vercel AI Gateway",
+    "note": "Jev through your Vercel AI Gateway key and billing",
+    "keyEnv": "AI_GATEWAY_API_KEY",
+    "keyUrl": "https://vercel.com/dashboard/ai-gateway/api-keys",
+    "url": "https://ai-gateway.vercel.sh/typesafe/v1/systemone",
+    "model": "typesafe-ai/jev"
+  },
+  "opencode": {
+    "label": "OpenCode",
+    "note": "Jev through your OpenCode Zen key: free by default, paid only if selected",
+    "keyEnv": "OPENCODE_API_KEY",
+    "keyUrl": "https://opencode.ai/auth",
+    "url": "https://opencode.ai/zen/v1/systemone",
+    "model": "jev-1.13-free",
+    "models": ["jev-1.13-free", "jev-1.13"],
+    "paidModel": "jev-1.13"
+  }
+}

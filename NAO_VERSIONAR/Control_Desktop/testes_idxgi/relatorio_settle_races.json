@@ -1,0 +1,55 @@
+{
+  "1_alvo_estatico_animacao_externa": {
+    "cache_hit_em_ociosidade_ok": true,
+    "motivo_cache_hit": "changes_outside_target_window",
+    "settle_esperou_timeout_ms": 143.2,
+    "motivo_invalidação_defensiva": "action_target_unsettled_other_windows_active",
+    "falso_cache_hit_evitado": true
+  },
+  "2_atrasos_resposta_alvo": {
+    "50ms": {
+      "mudou": true,
+      "motivo": "target_settled_quiescent",
+      "tempo_settle_ms": 143.1,
+      "falso_cache_hit_evitado": true
+    },
+    "100ms": {
+      "mudou": true,
+      "motivo": "target_continuous_activity_timeout",
+      "tempo_settle_ms": 172.3,
+      "falso_cache_hit_evitado": true
+    },
+    "250ms": {
+      "mudou": true,
+      "motivo": "action_target_no_activity_timeout",
+      "tempo_settle_ms": 163.5,
+      "falso_cache_hit_evitado": true
+    },
+    "500ms": {
+      "mudou": true,
+      "motivo": "action_target_no_activity_timeout",
+      "tempo_settle_ms": 162.9,
+      "falso_cache_hit_evitado": true
+    }
+  },
+  "3_acao_sem_mudanca_visual": {
+    "mudou": true,
+    "motivo": "action_target_no_activity_timeout",
+    "seguranca_conservadora_ok": true
+  },
+  "4_alteracao_outra_regiao_mesma_janela": {
+    "mudou": true,
+    "motivo": "target_settled_quiescent",
+    "captura_integral_ok": true
+  },
+  "5_alteracao_espontanea_sem_acao": {
+    "mudou": true,
+    "motivo": "target_window_dirty",
+    "detectado_ok": true
+  },
+  "6_mudanca_imediatamente_pos_settle": {
+    "mudou": true,
+    "motivo": "invalidated_due_to_action_target_no_activity_timeout",
+    "seguranca_ok": true
+  }
+}

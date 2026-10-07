@@ -1,0 +1,245 @@
+{
+  "unity_hwnd": 67032,
+  "unity_rect": [
+    -8,
+    25,
+    1928,
+    1088
+  ],
+  "unity_title": "AULA4 - SampleScene - Windows, Mac, Linux - Unity 6.5 (6000.5.8f1)* <DX11>",
+  "scenarios": [
+    {
+      "cenario": "1_abrir_menu_help",
+      "descricao": "Abrir menu Help da Unity e aguardar popup",
+      "settle": {
+        "mudou": true,
+        "motivo": "target_settled_quiescent",
+        "elapsed_ms": 110.28,
+        "silence_ms": 44.71,
+        "activity_events": 4,
+        "temporally_quiescent": true,
+        "outcome_verified": false,
+        "never_quiescent": false
+      },
+      "post_state": {
+        "tags_pre": 137,
+        "tags_post": 144,
+        "cached": false,
+        "latency_ms": 1052.8
+      },
+      "idle_subsequent_state": {
+        "cached": false,
+        "latency_ms": 831.98,
+        "oracle_reason": null
+      },
+      "safe_invalidation_ok": true,
+      "quiescent_settle_ok": true
+    },
+    {
+      "cenario": "2_fechar_menu_escape",
+      "descricao": "Fechar popup de menu via Escape",
+      "settle": {
+        "mudou": true,
+        "motivo": "target_settled_quiescent",
+        "elapsed_ms": 242.8,
+        "silence_ms": 41.77,
+        "activity_events": 1,
+        "temporally_quiescent": true,
+        "outcome_verified": false,
+        "never_quiescent": false
+      },
+      "post_state": {
+        "tags_pre": 144,
+        "tags_post": 144,
+        "cached": false,
+        "latency_ms": 786.8
+      },
+      "idle_subsequent_state": {
+        "cached": true,
+        "latency_ms": 0.35,
+        "oracle_reason": "no_frames_presented"
+      },
+      "safe_invalidation_ok": true,
+      "quiescent_settle_ok": true
+    },
+    {
+      "cenario": "3_foldout_inspector",
+      "descricao": "Alternar recolhimento/expansão de foldout no Inspector",
+      "settle": {
+        "mudou": true,
+        "motivo": "target_settled_quiescent",
+        "elapsed_ms": 163.54,
+        "silence_ms": 40.79,
+        "activity_events": 5,
+        "temporally_quiescent": true,
+        "outcome_verified": false,
+        "never_quiescent": false
+      },
+      "post_state": {
+        "tags_pre": 144,
+        "tags_post": 137,
+        "cached": false,
+        "latency_ms": 1463.5
+      },
+      "idle_subsequent_state": {
+        "cached": true,
+        "latency_ms": 0.53,
+        "oracle_reason": "no_frames_presented"
+      },
+      "safe_invalidation_ok": true,
+      "quiescent_settle_ok": true
+    },
+    {
+      "cenario": "4a_trocar_aba_console",
+      "descricao": "Alternar para a aba Console",
+      "settle": {
+        "mudou": true,
+        "motivo": "target_continuous_activity_timeout",
+        "elapsed_ms": 302.39,
+        "silence_ms": 0,
+        "activity_events": 12,
+        "temporally_quiescent": false,
+        "outcome_verified": false,
+        "never_quiescent": true
+      },
+      "post_state": {
+        "tags_pre": 137,
+        "tags_post": 137,
+        "cached": false,
+        "latency_ms": 1603.6
+      },
+      "idle_subsequent_state": {
+        "cached": true,
+        "latency_ms": 0.43,
+        "oracle_reason": "no_frames_presented"
+      },
+      "safe_invalidation_ok": true,
+      "quiescent_settle_ok": false
+    },
+    {
+      "cenario": "4b_retornar_aba_project",
+      "descricao": "Retornar para a aba Project",
+      "settle": {
+        "mudou": true,
+        "motivo": "target_settled_quiescent",
+        "elapsed_ms": 115.98,
+        "silence_ms": 45.75,
+        "activity_events": 4,
+        "temporally_quiescent": true,
+        "outcome_verified": false,
+        "never_quiescent": false
+      },
+      "post_state": {
+        "tags_pre": 137,
+        "tags_post": 179,
+        "cached": false,
+        "latency_ms": 1612.2
+      },
+      "idle_subsequent_state": {
+        "cached": true,
+        "latency_ms": 0.46,
+        "oracle_reason": "no_frames_presented"
+      },
+      "safe_invalidation_ok": true,
+      "quiescent_settle_ok": true
+    },
+    {
+      "cenario": "5a_trocar_aba_game",
+      "descricao": "Alternar para a aba Game",
+      "settle": {
+        "mudou": true,
+        "motivo": "target_settled_quiescent",
+        "elapsed_ms": 116.53,
+        "silence_ms": 40.01,
+        "activity_events": 1,
+        "temporally_quiescent": true,
+        "outcome_verified": false,
+        "never_quiescent": false
+      },
+      "post_state": {
+        "tags_pre": 179,
+        "tags_post": 179,
+        "cached": false,
+        "latency_ms": 1995.9
+      },
+      "idle_subsequent_state": {
+        "cached": true,
+        "latency_ms": 0.45,
+        "oracle_reason": "no_frames_presented"
+      },
+      "safe_invalidation_ok": true,
+      "quiescent_settle_ok": true
+    },
+    {
+      "cenario": "5b_retornar_aba_scene",
+      "descricao": "Retornar para a aba Scene",
+      "settle": {
+        "mudou": true,
+        "motivo": "target_settled_quiescent",
+        "elapsed_ms": 119.79,
+        "silence_ms": 42.19,
+        "activity_events": 2,
+        "temporally_quiescent": true,
+        "outcome_verified": false,
+        "never_quiescent": false
+      },
+      "post_state": {
+        "tags_pre": 179,
+        "tags_post": 160,
+        "cached": false,
+        "latency_ms": 1607.8
+      },
+      "idle_subsequent_state": {
+        "cached": true,
+        "latency_ms": 0.79,
+        "oracle_reason": "no_frames_presented"
+      },
+      "safe_invalidation_ok": true,
+      "quiescent_settle_ok": true
+    },
+    {
+      "cenario": "6_salvar_cena_processamento",
+      "descricao": "Salvar cena (Ctrl+S) com processamento de asset",
+      "settle": {
+        "mudou": true,
+        "motivo": "action_target_no_activity_timeout",
+        "elapsed_ms": 303.77,
+        "silence_ms": 0,
+        "activity_events": 0,
+        "temporally_quiescent": false,
+        "outcome_verified": false,
+        "never_quiescent": false
+      },
+      "post_state": {
+        "tags_pre": 160,
+        "tags_post": 160,
+        "cached": false,
+        "latency_ms": 2078.9
+      },
+      "idle_subsequent_state": {
+        "cached": true,
+        "latency_ms": 0.52,
+        "oracle_reason": "no_frames_presented"
+      },
+      "safe_invalidation_ok": true,
+      "quiescent_settle_ok": false
+    },
+    {
+      "cenario": "7_viewport_renderizacao_continua",
+      "descricao": "Unity em Play Mode com frames constantes na Viewport",
+      "settle": {
+        "mudou": true,
+        "motivo": "target_continuous_activity_timeout",
+        "never_quiescent": true,
+        "activity_events": 8,
+        "elapsed_ms": 255.6
+      },
+      "post_state": {
+        "cached": false,
+        "tags": 160
+      },
+      "safe_fallback_under_continuous_rendering": true,
+      "continuous_activity_detected": true
+    }
+  ]
+}

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Hover Ping Validation Suite</title>
+<style>
+  body {
+    background-color: #1e1e1e;
+    color: #ffffff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 30px;
+    user-select: none;
+  }
+  h1 { font-size: 20px; margin-bottom: 20px; color: #61dafb; }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 220px);
+    gap: 25px;
+    margin-top: 20px;
+  }
+  .card {
+    background: #2d2d2d;
+    padding: 15px;
+    border-radius: 6px;
+    border: 1px solid #3d3d3d;
+  }
+  .card h3 { font-size: 13px; margin: 0 0 10px 0; color: #aaa; text-transform: uppercase; }
+  
+  /* 1. Botão que muda só cor (sem transição) */
+  .btn-color-only {
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  .btn-color-only:hover {
+    background: #1d4ed8; /* Variação de cor apenas */
+  }
+
+  /* 2. Botão com animação suave (transition 250ms) */
+  .btn-anim {
+    background: #059669;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1), transform 250ms ease;
+  }
+  .btn-anim:hover {
+    background: #10b981;
+    transform: scale(1.05);
+  }
+
+  /* 3. Botão com Tooltip */
+  .tooltip-wrapper {
+    position: relative;
+    display: inline-block;
+  }
+  .btn-tooltip {
+    background: #d97706;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  .tooltip-text {
+    visibility: hidden;
+    opacity: 0;
+    width: 140px;
+    background-color: #111;
+    color: #fff;
+    text-align: center;
+    border-radius: 4px;
+    padding: 6px;
+    position: absolute;
+    z-index: 10;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 1px solid #444;
+    font-size: 12px;
+    transition: opacity 150ms ease;
+  }
+  .tooltip-wrapper:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  /* 4. Falso Botão (ESTÁTICO - deve dar Negativo no Hover) */
+  .fake-btn-static {
+    background: #4b5563;
+    color: #d1d5db;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 4px;
+    font-size: 14px;
+    display: inline-block;
+    cursor: default;
+  }
+
+  /* 5. Texto Estático Puro */
+  .static-text {
+    font-size: 14px;
+    color: #9ca3af;
+    line-height: 1.5;
+  }
+
+  /* 6. Botão com Pointer Lock / Mouse Capture */
+  .btn-lock {
+    background: #dc2626;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  .btn-lock:hover {
+    background: #b91c1c;
+  }
+</style>
+</head>
+<body>
+
+<h1>Hover Ping Ground-Truth Validation Suite</h1>
+<div style="font-size: 12px; color: #888;">Gabarito Determinístico para Medição de Hover Ping</div>
+
+<div class="grid">
+  <!-- Caso 1: Muda só cor -->
+  <div class="card" id="card-color">
+    <h3>1. Só Cor</h3>
+    <button class="btn-color-only" id="target-color-only">Salvar Dados</button>
+  </div>
+
+  <!-- Caso 2: Animação / Transição -->
+  <div class="card" id="card-anim">
+    <h3>2. Animação 250ms</h3>
+    <button class="btn-anim" id="target-anim">Processar</button>
+  </div>
+
+  <!-- Caso 3: Tooltip -->
+  <div class="card" id="card-tooltip">
+    <h3>3. Com Tooltip</h3>
+    <div class="tooltip-wrapper">
+      <button class="btn-tooltip" id="target-tooltip">Ajuda Info</button>
+      <span class="tooltip-text" id="tooltip-box">Dica de contexto ativo</span>
+    </div>
+  </div>
+
+  <!-- Caso 4: Falso Botão (Estático) -->
+  <div class="card" id="card-fake">
+    <h3>4. Falso Botão (Estático)</h3>
+    <div class="fake-btn-static" id="target-fake">Desabilitado</div>
+  </div>
+
+  <!-- Caso 5: Texto Puro -->
+  <div class="card" id="card-text">
+    <h3>5. Texto Puro</h3>
+    <div class="static-text" id="target-text">Versão 1.0.4 - Build Final</div>
+  </div>
+
+  <!-- Caso 6: Botão Micro-contraste (Hover sutil) -->
+  <div class="card" id="card-subtle">
+    <h3>6. Hover Sutil (Unity Style)</h3>
+    <button style="background: #383838; color: #ccc; border: 1px solid #282828; padding: 10px 18px; border-radius: 3px;"
+            onmouseover="this.style.background='#444444';"
+            onmouseout="this.style.background='#383838';"
+            id="target-unity-style">Inspector Tool</button>
+  </div>
+</div>
+
+<script>
+  // Expor posições exatas dos alvos na janela do navegador
+  window.getGroundTruth = function() {
+    const targets = [
+      { id: 'target-color-only', expected: true, type: 'color_only' },
+      { id: 'target-anim', expected: true, type: 'animation' },
+      { id: 'target-tooltip', expected: true, type: 'tooltip' },
+      { id: 'target-fake', expected: false, type: 'fake_static_button' },
+      { id: 'target-text', expected: false, type: 'static_text' },
+      { id: 'target-unity-style', expected: true, type: 'subtle_color' }
+    ];
+    return targets.map(t => {
+      const el = document.getElementById(t.id);
+      const r = el.getBoundingClientRect();
+      return {
+        id: t.id,
+        expected: t.expected,
+        type: t.type,
+        rect: [Math.round(r.left), Math.round(r.top), Math.round(r.width), Math.round(r.height)],
+        center: [Math.round(r.left + r.width / 2), Math.round(r.top + r.height / 2)]
+      };
+    });
+  };
+</script>
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Teste Animacao Chrome Electron IDXGI</title>
+<style>
+  body { font-family: sans-serif; background: #1e1e1e; color: #fff; margin: 20px; }
+  .caixa-estatica { width: 400px; height: 150px; background: #2d2d2d; padding: 15px; margin-bottom: 20px; }
+  .spinner {
+    width: 60px; height: 60px; border: 6px solid #444; border-top-color: #00d2ff;
+    border-radius: 50%; animation: spin 1s linear infinite; margin-top: 15px;
+  }
+  @keyframes spin { 100% { transform: rotate(360deg); } }
+  canvas { background: #000; display: block; margin-top: 10px; }
+</style>
+</head>
+<body>
+  <h2>Teste de Dirty Rects: Chromium DirectComposition</h2>
+  <div class="caixa-estatica">
+    <p>Esta região é 100% estática.</p>
+    <input type="text" value="Texto com caret..." style="font-size: 16px; padding: 5px;">
+  </div>
+  
+  <h3>Pequena animação isolada (60x60 px):</h3>
+  <div class="spinner"></div>
+
+  <h3>Canvas animado (200x120 px a 30 FPS):</h3>
+  <canvas id="cv" width="200" height="120"></canvas>
+
+  <script>
+    const cv = document.getElementById('cv');
+    const ctx = cv.getContext('2d');
+    let x = 0;
+    function anim() {
+      ctx.clearRect(0, 0, 200, 120);
+      ctx.fillStyle = '#ff0055';
+      ctx.fillRect(x % 160, 30, 40, 40);
+      x += 2;
+      requestAnimationFrame(anim);
+    }
+    requestAnimationFrame(anim);
+  </script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+{
+  "name": "jev-gateway",
+  "version": "0.5.0",
+  "description": "Local LLM gateway that lets TypeSafe's Jev model pick the tool for coding agents. Launchers for Codex, Claude Code, OpenCode, Kilo, Gemini and Devin, with a monitoring dashboard.",
+  "keywords": [
+    "llm",
+    "gateway",
+    "proxy",
+    "jev",
+    "typesafe",
+    "tool-calling",
+    "codex",
+    "claude-code",
+    "opencode",
+    "kilo",
+    "gemini",
+    "devin",
+    "openai",
+    "anthropic"
+  ],
+  "license": "MIT",
+  "author": "Vinicius Lana",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vinilana/jev-gateway.git"
+  },
+  "homepage": "https://github.com/vinilana/jev-gateway#readme",
+  "bugs": {
+    "url": "https://github.com/vinilana/jev-gateway/issues"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=22.15"
+  },
+  "bin": {
+    "jev-codex": "bin/jev-codex.mjs",
+    "jev-claude": "bin/jev-claude.mjs",
+    "jev-opencode": "bin/jev-opencode.mjs",
+    "jev-gemini": "bin/jev-gemini.mjs",
+    "jev-devin": "bin/jev-devin.mjs",
+    "jev-kilo": "bin/jev-kilo.mjs"
+  },
+  "files": [
+    "dist",
+    "bin",
+    "scripts/mock-jev.mjs",
+    ".env.example",
+    "CHANGELOG.md"
+  ],
+  "scripts": {
+    "dev": "tsx watch --env-file-if-exists=.env src/index.ts",
+    "start": "node --env-file-if-exists=.env dist/index.js",
+    "build": "rm -rf dist && tsc -p tsconfig.build.json && cp src/dashboard.html dist/",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "codex": "node bin/jev-codex.mjs",
+    "claude": "node bin/jev-claude.mjs",
+    "opencode": "node bin/jev-opencode.mjs",
+    "kilo": "node bin/jev-kilo.mjs",
+    "gemini": "node bin/jev-gemini.mjs",
+    "devin": "node bin/jev-devin.mjs",
+    "prepublishOnly": "pnpm typecheck && pnpm test && pnpm build"
+  },
+  "dependencies": {
+    "@hono/node-server": "^2.1.1",
+    "hono": "^4.13.8"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.3",
+    "@typesafe-ai/sdk": "^0.6.0",
+    "tsx": "^4.23.13",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.1"
+  },
+  "packageManager": "pnpm@10.33.3"
+}

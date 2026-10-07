@@ -1,0 +1,25 @@
+{
+  "unity_hwnd": 198060,
+  "unity_title": "AULA4 - SampleScene - Windows, Mac, Linux - Unity 6.5 (6000.5.8f1) <DX11>",
+  "popup_antes": null,
+  "novas_janelas_dialogo": [
+    {
+      "hwnd": 132504,
+      "title": "Build Profiles",
+      "class": "UnityContainerWndClass",
+      "visible": true,
+      "disabled": false,
+      "is_popup": false,
+      "rect": [
+        237,
+        78,
+        924,
+        770
+      ],
+      "owner": 198060
+    }
+  ],
+  "popup_com_build_settings": 132504,
+  "main_disabled_com_dialogo": false,
+  "popup_com_messagebox_nativa": null
+}

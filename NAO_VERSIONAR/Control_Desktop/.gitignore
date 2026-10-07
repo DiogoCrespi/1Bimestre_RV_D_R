@@ -1,0 +1,13 @@
+# Projetos de terceiros
+REFERENCIAS/
+
+# Cache Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Desktop (pasta interna)
+Desktop/
+
+# Skills compiladas em tempo de execucao (IDEIAS/02)
+skills/

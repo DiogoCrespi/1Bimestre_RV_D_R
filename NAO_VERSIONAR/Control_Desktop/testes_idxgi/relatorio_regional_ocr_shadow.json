@@ -1,0 +1,176 @@
+{
+  "unity_hwnd": 67032,
+  "unity_rect": [
+    -8,
+    25,
+    1928,
+    1088
+  ],
+  "unity_area": 2057968,
+  "area_sweep": [
+    {
+      "target_pct": 5,
+      "reprocessed_pct": 5.0,
+      "regional_total_latency_ms": 33.0,
+      "regional_crop_ocr_ms": 32.6,
+      "reconciliation_ms": 0.09,
+      "full_ocr_latency_ms": 382.6,
+      "speedup_factor": 11.6,
+      "equivalencia_pct": 100.0,
+      "perdidos": 0,
+      "falsos_duplicados": 0,
+      "is_faster_than_full": true
+    },
+    {
+      "target_pct": 10,
+      "reprocessed_pct": 10.0,
+      "regional_total_latency_ms": 30.8,
+      "regional_crop_ocr_ms": 30.3,
+      "reconciliation_ms": 0.14,
+      "full_ocr_latency_ms": 382.6,
+      "speedup_factor": 12.44,
+      "equivalencia_pct": 100.0,
+      "perdidos": 0,
+      "falsos_duplicados": 0,
+      "is_faster_than_full": true
+    },
+    {
+      "target_pct": 15,
+      "reprocessed_pct": 15.0,
+      "regional_total_latency_ms": 37.1,
+      "regional_crop_ocr_ms": 36.8,
+      "reconciliation_ms": 0.08,
+      "full_ocr_latency_ms": 382.6,
+      "speedup_factor": 10.3,
+      "equivalencia_pct": 100.0,
+      "perdidos": 0,
+      "falsos_duplicados": 0,
+      "is_faster_than_full": true
+    },
+    {
+      "target_pct": 25,
+      "reprocessed_pct": 28.3,
+      "regional_total_latency_ms": 98.3,
+      "regional_crop_ocr_ms": 97.9,
+      "reconciliation_ms": 0.09,
+      "full_ocr_latency_ms": 382.6,
+      "speedup_factor": 3.89,
+      "equivalencia_pct": 100.0,
+      "perdidos": 0,
+      "falsos_duplicados": 0,
+      "is_faster_than_full": true
+    },
+    {
+      "target_pct": 50,
+      "reprocessed_pct": 64.1,
+      "regional_total_latency_ms": 201.6,
+      "regional_crop_ocr_ms": 200.8,
+      "reconciliation_ms": 0.1,
+      "full_ocr_latency_ms": 382.6,
+      "speedup_factor": 1.9,
+      "equivalencia_pct": 97.22,
+      "perdidos": 3,
+      "falsos_duplicados": 2,
+      "is_faster_than_full": true
+    }
+  ],
+  "real_scenarios": [
+    {
+      "cenario": "menu_popup_help",
+      "descricao": "Abertura de menu popup Help",
+      "reprocessed_area_pct": 4.6,
+      "regional_latency_ms": 20.2,
+      "full_ocr_latency_ms": 239.0,
+      "speedup": 11.85,
+      "equivalencia_pct": 100.0,
+      "total_full_tags": 114,
+      "total_reconciled_tags": 115,
+      "elementos_perdidos": 0,
+      "falsos_duplicados": 1,
+      "perdidos_sample": [],
+      "falsos_sample": [
+        "Display 1"
+      ]
+    },
+    {
+      "cenario": "foldout_inspector",
+      "descricao": "Alternar componente no Inspector",
+      "reprocessed_area_pct": 10.8,
+      "regional_latency_ms": 56.3,
+      "full_ocr_latency_ms": 305.2,
+      "speedup": 5.42,
+      "equivalencia_pct": 96.3,
+      "total_full_tags": 108,
+      "total_reconciled_tags": 114,
+      "elementos_perdidos": 4,
+      "falsos_duplicados": 10,
+      "perdidos_sample": [
+        "Scale",
+        "Asset Store",
+        "Display 1",
+        "Full HD (1920x1080)"
+      ],
+      "falsos_sample": [
+        "About Unity",
+        "Documentation",
+        "Tutorials",
+        "Support",
+        "Discussions",
+        "Release Notes",
+        "Roadmap",
+        "Download Betam",
+        "Licenses",
+        "Report a Bugm"
+      ]
+    },
+    {
+      "cenario": "scroll_console",
+      "descricao": "Troca de aba Console e Scroll",
+      "reprocessed_area_pct": 20.8,
+      "regional_latency_ms": 81.9,
+      "full_ocr_latency_ms": 324.1,
+      "speedup": 3.96,
+      "equivalencia_pct": 98.82,
+      "total_full_tags": 85,
+      "total_reconciled_tags": 88,
+      "elementos_perdidos": 1,
+      "falsos_duplicados": 4,
+      "perdidos_sample": [
+        "error CS0619: 'Object.GetlnstanceID()' is obsolete: 'Use GetEntityId instead.'"
+      ],
+      "falsos_sample": [
+        "022",
+        "errar",
+        "'Objecl.GetlnstanceID()' is",
+        "'IJse GetEntityId inslead_"
+      ]
+    },
+    {
+      "cenario": "duas_regioes_simultaneas",
+      "descricao": "Seleção no Project disparando update no Inspector",
+      "reprocessed_area_pct": 21.5,
+      "regional_latency_ms": 110.7,
+      "full_ocr_latency_ms": 347.0,
+      "speedup": 3.13,
+      "equivalencia_pct": 98.98,
+      "total_full_tags": 98,
+      "total_reconciled_tags": 106,
+      "elementos_perdidos": 1,
+      "falsos_duplicados": 9,
+      "perdidos_sample": [
+        "Assets"
+      ],
+      "falsos_sample": [
+        "IJrp",
+        "Mobile Optimize-Free Low Poly Cars",
+        "'v",
+        ">",
+        "prefabs",
+        "Scene",
+        "Texture",
+        "Importantll!l",
+        "Mobile optl.„"
+      ]
+    }
+  ]
+}

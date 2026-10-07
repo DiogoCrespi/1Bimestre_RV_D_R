@@ -1,0 +1,570 @@
+{
+  "por_settle": {
+    "50ms": [
+      {
+        "forma_bits": 1,
+        "delta_cor": 14.0,
+        "interativo": true,
+        "elapsed_ms": 856.3,
+        "cursor_preso": false,
+        "cursor_restaurado": true,
+        "nome": "1. Botão Só Cor",
+        "esperado": true,
+        "acertou": true
+      },
+      {
+        "forma_bits": 0,
+        "delta_cor": 0.0,
+        "interativo": false,
+        "elapsed_ms": 80.0,
+        "cursor_preso": false,
+        "cursor_restaurado": true,
+        "nome": "2. Botão Animação 200ms",
+        "esperado": true,
+        "acertou": false
+      },
+      {
+        "forma_bits": 0,
+        "delta_cor": 0.0,
+        "interativo": false,
+        "elapsed_ms": 76.5,
+        "cursor_preso": false,
+        "cursor_restaurado": true,
+        "nome": "3. Botão com Tooltip",
+        "esperado": true,
+        "acertou": false
+      },
+      {
+        "forma_bits": 0,
+        "delta_cor": 0.0,
+        "interativo": false,
+        "elapsed_ms": 79.7,
+        "cursor_preso": false,
+        "cursor_restaurado": true,
+        "nome": "4. Falso Botão Estático",
+        "esperado": false,
+        "acertou": true
+      },
+      {
+        "forma_bits": 0,
+        "delta_cor": 0.0,
+        "interativo": false,
+        "elapsed_ms": 80.8,
+        "cursor_preso": false,
+        "cursor_restaurado": true,
+        "nome": "5. Texto Estático Puro",
+        "esperado": false,
+        "acertou": true
+      },
+      {
+        "forma_bits": 0,
+        "delta_cor": 0.0,
+        "interativo": false,
+        "elapsed_ms": 80.1,
+        "cursor_preso": false,
+        "cursor_restaurado": true,
+        "nome": "6. Botão Sutil Unity",
+        "esperado": true,
+        "acertou": false
+      }
+    ],
+    "100ms": [
+      {
+        "forma_bits": 1,
+        "delta_cor": 14.0,
+        "interativo": true,
+        "elapsed_ms": 130.1,
+        "cursor_preso": false,
+        "cursor_restaurado": true,
+        "nome": "1. Botão Só Cor",
+        "esperado": true,
+        "acertou": true
+      },
+      {
+        "forma_bits": 1,
+        "delta_cor": 10.0,
+        "interativo": true,
+        "elapsed_ms": 134.3,
+        "cursor_preso": false,
+        "cursor_restaurado": true,
+        "nome": "2. Botão Animação 200ms",
+        "esperado": true,
+        "acertou": true
+      },
+      {
+        "forma_bits": 0,
+        "delta_cor": 0.0,
+        "interativo": false,
+        "elapsed_ms": 126.3,
+        "cursor_preso": false,
+        "cursor_restaurado": true,
+        "nome": "3. Botão com Tooltip",
+        "esperado": true,
+        "acertou": false
+      },
+      {
+        "forma_bits": 0,
+        "delta_cor": 0.0,
+        "interativo": false,
+        "elapsed_ms": 127.2,
+        "cursor_preso": false,
+        "cursor_restaurado": true,
+        "nome": "4. Falso Botão Estático",
+        "esperado": false,
+        "acertou": true
+      },
+      {
+        "forma_bits": 0,
+        "delta_cor": 0.0,
+        "interativo": false,
+        "elapsed_ms": 128.6,
+        "cursor_preso": false,
+        "cursor_restaurado": true,
+        "nome": "5. Texto Estático Puro",
+        "esperado": false,
+        "acertou": true
+      },
+      {
+        "forma_bits": 0,
+        "delta_cor": 0.0,
+        "interativo": false,
+        "elapsed_ms": 126.3,
+        "cursor_preso": false,
+        "cursor_restaurado": true,
+        "nome": "6. Botão Sutil Unity",
+        "esperado": true,
+        "acertou": false
+      }
+    ],
+    "150ms": [
+      {
+        "forma_bits": 1,
+        "delta_cor": 14.0,
+        "interativo": true,
+        "elapsed_ms": 183.2,
+        "cursor_preso": false,
+        "cursor_restaurado": true,
+        "nome": "1. Botão Só Cor",
+        "esperado": true,
+        "acertou": true
+      },
+      {
+        "forma_bits": 2,
+        "delta_cor": 30.7,
+        "interativo": true,
+        "elapsed_ms": 183.1,
+        "cursor_preso": false,
+        "cursor_restaurado": true,
+        "nome": "2. Botão Animação 200ms",
+        "esperado": true,
+        "acertou": true
+      },
+      {
+        "forma_bits": 0,
+        "delta_cor": 0.0,
+        "interativo": false,
+        "elapsed_ms": 175.6,
+        "cursor_preso": false,
+        "cursor_restaurado": true,
+        "nome": "3. Botão com Tooltip",
+        "esperado": true,
+        "acertou": false
+      },
+      {
+        "forma_bits": 0,
+        "delta_cor": 0.0,
+        "interativo": false,
+        "elapsed_ms": 176.1,
+        "cursor_preso": false,
+        "cursor_restaurado": true,
+        "nome": "4. Falso Botão Estático",
+        "esperado": false,
+        "acertou": true
+      },
+      {
+        "forma_bits": 0,
+        "delta_cor": 0.0,
+        "interativo": false,
+        "elapsed_ms": 176.5,
+        "cursor_preso": false,
+        "cursor_restaurado": true,
+        "nome": "5. Texto Estático Puro",
+        "esperado": false,
+        "acertou": true
+      },
+      {
+        "forma_bits": 0,
+        "delta_cor": 0.0,
+        "interativo": false,
+        "elapsed_ms": 176.9,
+        "cursor_preso": false,
+        "cursor_restaurado": true,
+        "nome": "6. Botão Sutil Unity",
+        "esperado": true,
+        "acertou": false
+      }
+    ],
+    "220ms": [
+      {
+        "forma_bits": 1,
+        "delta_cor": 14.0,
+        "interativo": true,
+        "elapsed_ms": 246.1,
+        "cursor_preso": false,
+        "cursor_restaurado": true,
+        "nome": "1. Botão Só Cor",
+        "esperado": true,
+        "acertou": true
+      },
+      {
+        "forma_bits": 1,
+        "delta_cor": 23.4,
+        "interativo": true,
+        "elapsed_ms": 249.9,
+        "cursor_preso": false,
+        "cursor_restaurado": true,
+        "nome": "2. Botão Animação 200ms",
+        "esperado": true,
+        "acertou": true
+      },
+      {
+        "forma_bits": 0,
+        "delta_cor": 0.0,
+        "interativo": false,
+        "elapsed_ms": 248.8,
+        "cursor_preso": false,
+        "cursor_restaurado": true,
+        "nome": "3. Botão com Tooltip",
+        "esperado": true,
+        "acertou": false
+      },
+      {
+        "forma_bits": 0,
+        "delta_cor": 0.0,
+        "interativo": false,
+        "elapsed_ms": 246.1,
+        "cursor_preso": false,
+        "cursor_restaurado": true,
+        "nome": "4. Falso Botão Estático",
+        "esperado": false,
+        "acertou": true
+      },
+      {
+        "forma_bits": 0,
+        "delta_cor": 0.0,
+        "interativo": false,
+        "elapsed_ms": 248.5,
+        "cursor_preso": false,
+        "cursor_restaurado": true,
+        "nome": "5. Texto Estático Puro",
+        "esperado": false,
+        "acertou": true
+      },
+      {
+        "forma_bits": 0,
+        "delta_cor": 0.0,
+        "interativo": false,
+        "elapsed_ms": 246.8,
+        "cursor_preso": false,
+        "cursor_restaurado": true,
+        "nome": "6. Botão Sutil Unity",
+        "esperado": true,
+        "acertou": false
+      }
+    ],
+    "300ms": [
+      {
+        "forma_bits": 1,
+        "delta_cor": 14.0,
+        "interativo": true,
+        "elapsed_ms": 326.0,
+        "cursor_preso": false,
+        "cursor_restaurado": true,
+        "nome": "1. Botão Só Cor",
+        "esperado": true,
+        "acertou": true
+      },
+      {
+        "forma_bits": 1,
+        "delta_cor": 23.4,
+        "interativo": true,
+        "elapsed_ms": 334.9,
+        "cursor_preso": false,
+        "cursor_restaurado": true,
+        "nome": "2. Botão Animação 200ms",
+        "esperado": true,
+        "acertou": true
+      },
+      {
+        "forma_bits": 0,
+        "delta_cor": 0.0,
+        "interativo": false,
+        "elapsed_ms": 329.0,
+        "cursor_preso": false,
+        "cursor_restaurado": true,
+        "nome": "3. Botão com Tooltip",
+        "esperado": true,
+        "acertou": false
+      },
+      {
+        "forma_bits": 0,
+        "delta_cor": 0.0,
+        "interativo": false,
+        "elapsed_ms": 328.8,
+        "cursor_preso": false,
+        "cursor_restaurado": true,
+        "nome": "4. Falso Botão Estático",
+        "esperado": false,
+        "acertou": true
+      },
+      {
+        "forma_bits": 0,
+        "delta_cor": 0.0,
+        "interativo": false,
+        "elapsed_ms": 326.3,
+        "cursor_preso": false,
+        "cursor_restaurado": true,
+        "nome": "5. Texto Estático Puro",
+        "esperado": false,
+        "acertou": true
+      },
+      {
+        "forma_bits": 0,
+        "delta_cor": 0.0,
+        "interativo": false,
+        "elapsed_ms": 327.0,
+        "cursor_preso": false,
+        "cursor_restaurado": true,
+        "nome": "6. Botão Sutil Unity",
+        "esperado": true,
+        "acertou": false
+      }
+    ]
+  },
+  "calibracoes": [
+    {
+      "min_delta": 1,
+      "min_color": 2.0,
+      "accuracy": 66.7,
+      "precision": 100.0,
+      "recall": 50.0,
+      "fp": 0,
+      "fn": 2
+    },
+    {
+      "min_delta": 1,
+      "min_color": 4.0,
+      "accuracy": 66.7,
+      "precision": 100.0,
+      "recall": 50.0,
+      "fp": 0,
+      "fn": 2
+    },
+    {
+      "min_delta": 1,
+      "min_color": 6.0,
+      "accuracy": 66.7,
+      "precision": 100.0,
+      "recall": 50.0,
+      "fp": 0,
+      "fn": 2
+    },
+    {
+      "min_delta": 1,
+      "min_color": 8.0,
+      "accuracy": 66.7,
+      "precision": 100.0,
+      "recall": 50.0,
+      "fp": 0,
+      "fn": 2
+    },
+    {
+      "min_delta": 1,
+      "min_color": 12.0,
+      "accuracy": 66.7,
+      "precision": 100.0,
+      "recall": 50.0,
+      "fp": 0,
+      "fn": 2
+    },
+    {
+      "min_delta": 1,
+      "min_color": 16.0,
+      "accuracy": 66.7,
+      "precision": 100.0,
+      "recall": 50.0,
+      "fp": 0,
+      "fn": 2
+    },
+    {
+      "min_delta": 2,
+      "min_color": 2.0,
+      "accuracy": 66.7,
+      "precision": 100.0,
+      "recall": 50.0,
+      "fp": 0,
+      "fn": 2
+    },
+    {
+      "min_delta": 2,
+      "min_color": 4.0,
+      "accuracy": 66.7,
+      "precision": 100.0,
+      "recall": 50.0,
+      "fp": 0,
+      "fn": 2
+    },
+    {
+      "min_delta": 2,
+      "min_color": 6.0,
+      "accuracy": 66.7,
+      "precision": 100.0,
+      "recall": 50.0,
+      "fp": 0,
+      "fn": 2
+    },
+    {
+      "min_delta": 2,
+      "min_color": 8.0,
+      "accuracy": 66.7,
+      "precision": 100.0,
+      "recall": 50.0,
+      "fp": 0,
+      "fn": 2
+    },
+    {
+      "min_delta": 2,
+      "min_color": 12.0,
+      "accuracy": 66.7,
+      "precision": 100.0,
+      "recall": 50.0,
+      "fp": 0,
+      "fn": 2
+    },
+    {
+      "min_delta": 3,
+      "min_color": 2.0,
+      "accuracy": 66.7,
+      "precision": 100.0,
+      "recall": 50.0,
+      "fp": 0,
+      "fn": 2
+    },
+    {
+      "min_delta": 3,
+      "min_color": 4.0,
+      "accuracy": 66.7,
+      "precision": 100.0,
+      "recall": 50.0,
+      "fp": 0,
+      "fn": 2
+    },
+    {
+      "min_delta": 3,
+      "min_color": 6.0,
+      "accuracy": 66.7,
+      "precision": 100.0,
+      "recall": 50.0,
+      "fp": 0,
+      "fn": 2
+    },
+    {
+      "min_delta": 3,
+      "min_color": 8.0,
+      "accuracy": 66.7,
+      "precision": 100.0,
+      "recall": 50.0,
+      "fp": 0,
+      "fn": 2
+    },
+    {
+      "min_delta": 3,
+      "min_color": 12.0,
+      "accuracy": 66.7,
+      "precision": 100.0,
+      "recall": 50.0,
+      "fp": 0,
+      "fn": 2
+    },
+    {
+      "min_delta": 4,
+      "min_color": 2.0,
+      "accuracy": 66.7,
+      "precision": 100.0,
+      "recall": 50.0,
+      "fp": 0,
+      "fn": 2
+    },
+    {
+      "min_delta": 4,
+      "min_color": 4.0,
+      "accuracy": 66.7,
+      "precision": 100.0,
+      "recall": 50.0,
+      "fp": 0,
+      "fn": 2
+    },
+    {
+      "min_delta": 4,
+      "min_color": 6.0,
+      "accuracy": 66.7,
+      "precision": 100.0,
+      "recall": 50.0,
+      "fp": 0,
+      "fn": 2
+    },
+    {
+      "min_delta": 4,
+      "min_color": 8.0,
+      "accuracy": 66.7,
+      "precision": 100.0,
+      "recall": 50.0,
+      "fp": 0,
+      "fn": 2
+    },
+    {
+      "min_delta": 4,
+      "min_color": 12.0,
+      "accuracy": 66.7,
+      "precision": 100.0,
+      "recall": 50.0,
+      "fp": 0,
+      "fn": 2
+    },
+    {
+      "min_delta": 2,
+      "min_color": 16.0,
+      "accuracy": 50.0,
+      "precision": 100.0,
+      "recall": 25.0,
+      "fp": 0,
+      "fn": 3
+    },
+    {
+      "min_delta": 3,
+      "min_color": 16.0,
+      "accuracy": 50.0,
+      "precision": 100.0,
+      "recall": 25.0,
+      "fp": 0,
+      "fn": 3
+    },
+    {
+      "min_delta": 4,
+      "min_color": 16.0,
+      "accuracy": 50.0,
+      "precision": 100.0,
+      "recall": 25.0,
+      "fp": 0,
+      "fn": 3
+    }
+  ],
+  "cursor_lock": {
+    "forma_bits": 0,
+    "delta_cor": 0.0,
+    "interativo": false,
+    "elapsed_ms": 179.8,
+    "cursor_preso": true,
+    "cursor_restaurado": false
+  }
+}
